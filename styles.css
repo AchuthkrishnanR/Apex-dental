@@ -3012,13 +3012,12 @@ button:focus-visible {
 
 @media (max-width: 700px) {
   .tooth-art {
-    width: min(46%, 185px);
-    max-height: calc(100% - 12px);
+    width: min(36%, 150px);
   }
 
   .stage-note {
-    top: 50px;
-    bottom: auto;
+    top: auto;
+    bottom: 38px;
     font-size: 8px;
     white-space: nowrap;
   }
