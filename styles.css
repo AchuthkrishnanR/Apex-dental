@@ -3011,17 +3011,14 @@ button:focus-visible {
 }
 
 @media (max-width: 700px) {
-  .tooth-scene {
-    padding-bottom: 54px;
-  }
-
   .tooth-art {
     width: min(46%, 185px);
     max-height: calc(100% - 12px);
   }
 
   .stage-note {
-    bottom: 38px;
+    top: 50px;
+    bottom: auto;
     font-size: 8px;
     white-space: nowrap;
   }
