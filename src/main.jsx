@@ -1,9 +1,9 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import AccordionGallery from './components/AccordionGallery';
-import { serviceItems } from './services';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import AccordionGallery from "./components/AccordionGallery";
+import { serviceItems } from "./services";
 
-const servicesMount = document.getElementById('service-gallery-root');
+const servicesMount = document.getElementById("service-gallery-root");
 
 if (servicesMount) {
   createRoot(servicesMount).render(
