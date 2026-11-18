@@ -3118,6 +3118,18 @@ button:focus-visible {
   opacity: 1;
   transform: translateY(0);
 }
+.director-card.scroll-reveal {
+  transition:
+    opacity 560ms ease var(--reveal-delay, 0ms),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms ease,
+    border-color 420ms ease;
+}
+@media (hover: hover) {
+  .director-card.scroll-reveal.is-revealed:hover {
+    transform: translateY(-7px);
+  }
+}
 html.brand-intro-active,
 html.brand-intro-active body {
   overflow: hidden;
