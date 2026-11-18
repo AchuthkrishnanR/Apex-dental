@@ -10,8 +10,8 @@ if (servicesMount) {
     <AccordionGallery
       items={serviceItems}
       defaultIndex={0}
-      accentColor="#c4a331"
-      overlayColor="#574817"
+      accentColor="#d6f19b"
+      overlayColor="#0b110f"
       textColor="#fffdf6"
       height={440}
       gap={12}
@@ -20,6 +20,7 @@ if (servicesMount) {
       trigger="hover"
       parallax={0.22}
       tilt={3}
+      grayscale={false}
     />,
   );
 }
