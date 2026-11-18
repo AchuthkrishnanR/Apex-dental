@@ -2,28 +2,28 @@ const assetBase = import.meta.env.BASE_URL;
 
 export const serviceItems = [
   {
-    image: `${assetBase}images/services/smile-design.svg`,
+    image: `${assetBase}images/services/smile-design.webp`,
     label: "Smile design",
-    alt: "Illustrated smile design and tooth silhouette",
+    alt: "Close-up of a healthy, natural smile",
   },
   {
-    image: `${assetBase}images/services/whitening.svg`,
+    image: `${assetBase}images/services/whitening.webp`,
     label: "Whitening",
-    alt: "Illustrated tooth with brightening sparkles",
+    alt: "Bright smile photographed in close-up",
   },
   {
-    image: `${assetBase}images/services/alignment.svg`,
+    image: `${assetBase}images/services/alignment.webp`,
     label: "Aligners & braces",
-    alt: "Illustrated orthodontic alignment arch",
+    alt: "Close-up of dental braces on a patient's teeth",
   },
   {
-    image: `${assetBase}images/services/restorative.svg`,
+    image: `${assetBase}images/services/restorative.webp`,
     label: "Restorative care",
-    alt: "Illustrated dental implant and restoration",
+    alt: "Panoramic dental X-ray displayed in a clinic",
   },
   {
-    image: `${assetBase}images/services/family-care.svg`,
+    image: `${assetBase}images/services/family-care.webp`,
     label: "Family & prevention",
-    alt: "Illustrated family dental care and prevention",
+    alt: "Child brushing her teeth as part of a daily dental care routine",
   },
 ];

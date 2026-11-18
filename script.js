@@ -56,38 +56,64 @@
       const target = headerBrand.getBoundingClientRect();
       const width = introBrand.offsetWidth;
       const height = introBrand.offsetHeight;
-      const scale = 1.42;
-      const startX = (window.innerWidth - width * scale) / 2;
-      const startY = (window.innerHeight - height * scale) / 2;
-      const duration = 1450;
+      const centeredAt = (scale) =>
+        `translate(${(window.innerWidth - width * scale) / 2}px, ${(window.innerHeight - height * scale) / 2}px) scale(${scale})`;
+      const duration = 2500;
       const move = introBrand.animate(
         [
           {
-            transform: `translate(${startX}px, ${startY}px) scale(${scale})`,
+            transform: centeredAt(1.38),
             opacity: 1,
             offset: 0,
+            easing: "ease-in-out",
           },
           {
-            transform: `translate(${startX}px, ${startY}px) scale(${scale})`,
+            transform: centeredAt(1.48),
             opacity: 1,
-            offset: 0.38,
+            offset: 0.15,
+            easing: "ease-in-out",
+          },
+          {
+            transform: centeredAt(1.38),
+            opacity: 1,
+            offset: 0.3,
+            easing: "ease-in-out",
+          },
+          {
+            transform: centeredAt(1.48),
+            opacity: 1,
+            offset: 0.45,
+            easing: "ease-in-out",
+          },
+          {
+            transform: centeredAt(1.38),
+            opacity: 1,
+            offset: 0.6,
+            easing: "ease-in-out",
+          },
+          {
+            transform: centeredAt(1.42),
+            opacity: 1,
+            offset: 0.66,
+            easing: "ease-in-out",
           },
           {
             transform: `translate(${target.left}px, ${target.top}px) scale(1)`,
             opacity: 1,
             offset: 1,
+            easing: "ease-in-out",
           },
         ],
         {
           duration,
-          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          easing: "linear",
           fill: "forwards",
         },
       );
       const fade = veil.animate(
         [
           { opacity: 1, offset: 0 },
-          { opacity: 1, offset: 0.52 },
+          { opacity: 1, offset: 0.66 },
           { opacity: 0, offset: 1 },
         ],
         { duration, easing: "ease-out", fill: "forwards" },
