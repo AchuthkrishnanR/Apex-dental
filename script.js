@@ -169,6 +169,7 @@
   const story = document.getElementById("story"),
     stains = [...document.querySelectorAll("[data-stain]")],
     brush = document.getElementById("brush"),
+    tooth = document.querySelector(".tooth-art"),
     bar = document.getElementById("stage-progress"),
     number = document.getElementById("stage-number"),
     caption = document.getElementById("stage-caption"),
@@ -204,12 +205,23 @@
     if (!reduced) {
       const x = 74 + p * 280,
         y = 119 + Math.sin(p * Math.PI) * 91,
-        angle = -34 + Math.cos(p * Math.PI * 2) * 7;
+        angle = -34 + Math.cos(p * Math.PI * 2) * 7,
+        rotateY = 7 * (1 - p),
+        rotateX = -1.5 + Math.sin(p * Math.PI) * 3;
       brush.setAttribute(
         "transform",
         "translate(" + x + " " + y + ") rotate(" + angle + ")",
       );
-    } else brush.style.display = "none";
+      tooth.style.transform =
+        "perspective(1000px) rotateY(" +
+        rotateY +
+        "deg) rotateX(" +
+        rotateX +
+        "deg)";
+    } else {
+      brush.style.display = "none";
+      tooth.style.transform = "none";
+    }
   }
   function onScroll() {
     if (!queued) {

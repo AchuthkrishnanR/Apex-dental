@@ -215,6 +215,9 @@ button:focus-visible {
   height: auto;
   max-height: 100%;
   overflow: visible;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 .stains {
   transition: opacity 0.1s linear;
@@ -2570,11 +2573,11 @@ button:focus-visible {
   width: 64px;
   height: 58px;
 }
-.brush rect {
-  fill: #dfc254;
+.brush .brush-handle {
+  fill: url(#brushHandle);
 }
-.brush path:first-of-type {
-  fill: #8a701b;
+.brush .brush-head {
+  fill: url(#brushHead);
 }
 .tooth-art > path[stroke="#c9e891"] {
   stroke: #d8c05a;
