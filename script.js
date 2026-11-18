@@ -1,6 +1,9 @@
 (() => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     const themeRoot = document.documentElement,
@@ -30,6 +33,72 @@
       } catch {}
     });
   }
+  const headerBrand = document.querySelector(".header .brand");
+  if (headerBrand && !prefersReducedMotion && Element.prototype.animate) {
+    const intro = document.createElement("div");
+    intro.className = "brand-intro";
+    intro.setAttribute("aria-hidden", "true");
+
+    const veil = document.createElement("div");
+    veil.className = "brand-intro__veil";
+
+    const introBrand = headerBrand.cloneNode(true);
+    introBrand.className = "brand brand-intro__brand";
+    introBrand.removeAttribute("href");
+    introBrand.removeAttribute("aria-label");
+    introBrand.setAttribute("tabindex", "-1");
+
+    intro.append(veil, introBrand);
+    document.body.prepend(intro);
+    document.documentElement.classList.add("brand-intro-active");
+
+    requestAnimationFrame(() => {
+      const target = headerBrand.getBoundingClientRect();
+      const width = introBrand.offsetWidth;
+      const height = introBrand.offsetHeight;
+      const scale = 1.42;
+      const startX = (window.innerWidth - width * scale) / 2;
+      const startY = (window.innerHeight - height * scale) / 2;
+      const duration = 1450;
+      const move = introBrand.animate(
+        [
+          {
+            transform: `translate(${startX}px, ${startY}px) scale(${scale})`,
+            opacity: 1,
+            offset: 0,
+          },
+          {
+            transform: `translate(${startX}px, ${startY}px) scale(${scale})`,
+            opacity: 1,
+            offset: 0.38,
+          },
+          {
+            transform: `translate(${target.left}px, ${target.top}px) scale(1)`,
+            opacity: 1,
+            offset: 1,
+          },
+        ],
+        {
+          duration,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          fill: "forwards",
+        },
+      );
+      const fade = veil.animate(
+        [
+          { opacity: 1, offset: 0 },
+          { opacity: 1, offset: 0.52 },
+          { opacity: 0, offset: 1 },
+        ],
+        { duration, easing: "ease-out", fill: "forwards" },
+      );
+
+      Promise.allSettled([move.finished, fade.finished]).then(() => {
+        intro.remove();
+        document.documentElement.classList.remove("brand-intro-active");
+      });
+    });
+  }
   const menu = document.querySelector(".menu"),
     nav = document.getElementById("nav");
   menu.addEventListener("click", () => {
@@ -49,6 +118,28 @@
       menu.setAttribute("aria-expanded", "false");
     }
   });
+  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    const revealTargets = document.querySelectorAll(
+      ".chapter-copy, .chapter-actions, .chapter-meta, .section-heading, .service-group, .director-card, .doctor, .appointment-inner, .visit-grid, .footer-top",
+    );
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+
+    revealTargets.forEach((element, index) => {
+      element.classList.add("scroll-reveal");
+      element.style.setProperty("--reveal-delay", `${(index % 4) * 65}ms`);
+      revealObserver.observe(element);
+    });
+  }
   const story = document.getElementById("story"),
     stains = [...document.querySelectorAll("[data-stain]")],
     brush = document.getElementById("brush"),
@@ -56,7 +147,7 @@
     number = document.getElementById("stage-number"),
     caption = document.getElementById("stage-caption"),
     chapters = [...document.querySelectorAll(".chapter")],
-    reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    reduced = prefersReducedMotion;
   const labels = [
     "A GOOD PLACE TO BEGIN",
     "PREVENT & PROTECT",

@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script>
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      if (!window.location.hash) window.scrollTo(0, 0);
+    </script>
     <meta name="theme-color" content="#fbfaf6" />
     <meta
       name="description"
